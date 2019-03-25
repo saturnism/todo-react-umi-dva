@@ -10,7 +10,6 @@ import * as styles from './index.css';
 
 interface ViewProps extends TodoState {
   dispatch: any;
-  todos: TodoState;
   loading: boolean;
 }
 

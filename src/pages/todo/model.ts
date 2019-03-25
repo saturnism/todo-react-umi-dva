@@ -37,6 +37,7 @@ export default {
   },
 
   reducers: {
+    // A little hack here, to only return items where item.completed = false
     incomplete(state: TodoState, action) {
       return {
         ...state,
