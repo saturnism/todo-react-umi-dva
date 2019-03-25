@@ -8,7 +8,7 @@ export default {
       antd: true,
       dva: true,
       dynamicImport: { webpackChunkName: true },
-      title: 'todo-umi-dva-firestore',
+      title: 'Todo with umi, dva',
       dll: true,
       locale: {
         enable: true,
