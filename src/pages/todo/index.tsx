@@ -68,8 +68,8 @@ export default class Todo extends PureComponent<ViewProps, ViewStates> {
                         value={this.state.pendingTodo}
                         onSearch={e => this.addTodo()}
                         enterButton="Add Todo"
-                        required/>
-                <List className={styles.todoList} size="large" loading={this.props.loading} bordered
+                        required={true}/>
+                <List className={styles.todoList} size="large" loading={this.props.loading} bordered={true}
                     dataSource={this.props.todos.list} renderItem={item => (
                     <List.Item hidden={item.completed} className={styles.todoItem}>
                         {item.description}
