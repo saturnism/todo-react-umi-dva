@@ -109,4 +109,22 @@ A sequence of steps that I did to create this Todo app.
         }
     }
     ```
-1. Add DVA
+1. Refresh the page to see it: `http://localhost:8080/todo`
+
+### Wire up DVA
+This is perhaps the most complicated section.
+1. In `src/pages/todo/index.tsx`, wire up DVA
+
+### Lint
+1. Read [umi-lint](https://www.npmjs.com/package/umi-lint) instructions
+1. Add lint: `yarn add umi-lint --dev`
+1. Add to `package.json`
+    ```
+    "scripts": {
+      ...
+      "lint:umi": "umi-lint --tslint --prettier  src/",
+      "precommit:umi": "umi-lint --staged --tslint --stylelint --prettier --fix"
+      ...
+    }
+    ```
+1. Run: `yarn lint:umi`
