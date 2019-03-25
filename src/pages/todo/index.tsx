@@ -8,7 +8,8 @@ import { connect } from 'dva';
 import { TodoState } from './model';
 import * as styles from './index.css';
 
-interface ViewProps extends TodoState {
+interface ViewProps {
+  todos: TodoState;
   dispatch: any;
   loading: boolean;
 }
@@ -34,6 +35,8 @@ class Todo extends PureComponent<ViewProps, ViewStates> {
   }
 
   addTodo() {
+    if (!this.state.pendingTodo) return;
+
     const { dispatch } = this.props;
     dispatch({
       type: 'todos/add',
