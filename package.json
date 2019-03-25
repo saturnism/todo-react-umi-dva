@@ -7,7 +7,8 @@
     "lint:es": "eslint --ext .js src mock tests",
     "lint:ts": "tslint \"src/**/*.ts\" \"src/**/*.tsx\"",
     "lint:umi": "umi-lint --tslint --prettier  src/",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "precommit:umi": "umi-lint --staged --tslint --stylelint --prettier --fix"
   },
   "dependencies": {
     "ant-design-pro": "^2.1.1",
