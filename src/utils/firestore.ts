@@ -22,17 +22,17 @@ export class FirestoreCollectionModel<T, S extends FirestoreCollectionState<T>> 
     this.effects = {
       *push({payload}, {call}) {
         yield call(() => {
-          firestore.collection(collection).add(payload);
+          return firestore.collection(collection).add(payload);
         });
       },
       *update({id, payload}, {call}) {
         yield call(() => {
-          firestore.collection(collection).doc(id).update(payload);
+          return firestore.collection(collection).doc(id).update(payload);
         })
       },
       *delete({id}, {call}) {
         yield call(() => {
-          firestore.collection(collection).doc(id).delete();
+          return firestore.collection(collection).doc(id).delete();
         })
       },
       *toArray({ payload }, { put }) {
