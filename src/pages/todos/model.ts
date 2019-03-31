@@ -1,16 +1,19 @@
-import { Todo } from './types';
 import { FirestoreCollectionModel, FirestoreCollectionState } from '@/utils/firestore';
-import { Model } from 'dva';
 import app from '@/utils/firebase';
 
-const firestore = app.firestore();
-
+export interface Todo {
+  id: string;
+  completed: boolean;
+  description: string;
+  creationTimestamp: Date;
+}
 
 export class TodosState implements FirestoreCollectionState<Todo> {
   list: Todo[] = [];
 }
 
-const model = new FirestoreCollectionModel<Todo, TodosState>("todos", new TodosState(), app.firestore());
+const model = new FirestoreCollectionModel<Todo, TodosState>(
+  app.firestore(),"todos", new TodosState(),[{fieldPath: 'completed', opStr: '==', value: false}]);
 
-export default model as Model;
+export default model;
 

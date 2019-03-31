@@ -24,7 +24,7 @@ export class FirestoreCollectionModel<T, S extends FirestoreCollectionState<T>> 
   reducers: ReducersMapObject | ReducersMapObjectWithEnhancer;
   subscriptions: SubscriptionsMapObject;
 
-  constructor(collection : string, initialState : S, firestore : Firestore, wheres? : FirestoreWhere[]) {
+  constructor(firestore : Firestore, collection : string, initialState : S, wheres? : FirestoreWhere[]) {
     this.namespace = collection;
     this.state = initialState;
     this.effects = {
