@@ -14,6 +14,7 @@
     "ant-design-pro": "^2.1.1",
     "antd": "^3.12.1",
     "dva": "^2.5.0-beta.2",
+    "firebase": "^5.9.2",
     "hash.js": "^1.1.5",
     "moment": "^2.22.2",
     "react": "^16.7.0",
@@ -45,6 +46,10 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --fix",
+      "git add"
+    ],
+    "*.{ts,tsx}": [
+      "tslint --fix",
       "git add"
     ]
   },
