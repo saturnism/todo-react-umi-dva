@@ -17,11 +17,11 @@ const model : TodoModel = {
   state: new TodoState(),
 
   effects: {
-    *add({ payload }, { call, put }) {
+    *add({ payload }, { call }) {
       const response = yield call(service.create, payload);
     },
-    *complete({ payload }, { call, put }) {
-      const response = yield call(service.update, payload.id, payload);
+    *complete({ id, payload }, { call }) {
+      const response = yield call(service.update, id, payload);
     },
     *convert({ payload }, { put }) {
       const list : Todo[] = [];
@@ -62,6 +62,7 @@ const model : TodoModel = {
           });
         } else if (unsubscribe) {
           unsubscribe();
+          unsubscribe = null;
         }
       });
     }

@@ -27,12 +27,6 @@ class Todo extends PureComponent<ViewProps, ViewStates> {
     pendingTodo: '',
     loading: false,
   };
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'todos/all',
-    });
-  }
 
   addTodo() {
     if (!this.state.pendingTodo) return;
@@ -51,8 +45,8 @@ class Todo extends PureComponent<ViewProps, ViewStates> {
     const { dispatch } = this.props;
     dispatch({
       type: 'todos/complete',
+      id: id,
       payload: {
-        id: id,
         completed: true,
       },
     });
