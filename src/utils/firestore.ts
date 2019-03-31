@@ -2,19 +2,11 @@ import { EffectsMapObject, Model, ReducersMapObjectWithEnhancer, SubscriptionsMa
 import { ReducersMapObject } from 'redux';
 import firebase from 'firebase';
 import Query = firebase.firestore.Query;
-import FieldPath = firebase.firestore.FieldPath;
-import WhereFilterOp = firebase.firestore.WhereFilterOp;
 import Firestore = firebase.firestore.Firestore;
 import pathToRegexp from 'path-to-regexp'
 
 export interface FirestoreCollectionState<T> {
-  list: T[],
-}
-
-export interface FirestoreWhere {
-  fieldPath: string | FieldPath,
-  opStr: WhereFilterOp,
-  value: any,
+  readonly list: T[],
 }
 
 export class FirestoreCollectionModel<T, S extends FirestoreCollectionState<T>> implements Model {
@@ -24,7 +16,7 @@ export class FirestoreCollectionModel<T, S extends FirestoreCollectionState<T>> 
   reducers: ReducersMapObject | ReducersMapObjectWithEnhancer;
   subscriptions: SubscriptionsMapObject;
 
-  constructor(firestore : Firestore, collection : string, initialState : S, wheres? : FirestoreWhere[]) {
+  constructor(firestore : Firestore, collection : string, initialState : S, query? : (Query) => void ) {
     this.namespace = collection;
     this.state = initialState;
     this.effects = {
@@ -59,7 +51,7 @@ export class FirestoreCollectionModel<T, S extends FirestoreCollectionState<T>> 
     };
 
     this.reducers = {
-      all(state : T, { type, payload }) {
+      all(state : T, { payload }) {
         return {
           ...state,
           list: payload
@@ -74,18 +66,16 @@ export class FirestoreCollectionModel<T, S extends FirestoreCollectionState<T>> 
           const match = pathToRegexp('/' + collection).exec(pathname)
           if (match && !unsubscribe ) {
             var ref = firestore.collection(collection) as Query;
-            if (wheres) {
-              wheres.forEach(w => {
-                ref = ref.where(w.fieldPath, w.opStr, w.value);
-              });
+            if (query) {
+              query(ref);
             }
 
             unsubscribe = ref.onSnapshot(snapshot => {
-                dispatch({
-                  type: 'toArray',
-                  payload: { snapshot: snapshot },
-                })
+              dispatch({
+                type: 'toArray',
+                payload: { snapshot: snapshot },
               })
+            });
           } else if (!match && unsubscribe) {
             unsubscribe();
             unsubscribe = null;
