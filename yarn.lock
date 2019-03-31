@@ -7103,6 +7103,11 @@ inquirer@6.2.2, inquirer@^6.0.0, inquirer@^6.1.0, inquirer@^6.2.2:
     strip-ansi "^5.0.0"
     through "^2.3.6"
 
+install@^0.12.2:
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/install/-/install-0.12.2.tgz#ea10e9b2cbb5b0484f25080b24b5b34429d9f564"
+  integrity sha512-+7thTb4Rpvs9mnlhHKGZFJbGOO6kyMgy+gg0sgM5vFzIFK0wrCYXqdlaM71Bi289DTuPHf61puMFsaZBcwDIrg==
+
 internal-ip@^4.0.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/internal-ip/-/internal-ip-4.2.0.tgz#46e81b638d84c338e5c67e42b1a17db67d0814fa"
@@ -11867,6 +11872,15 @@ react-slick@~0.23.2:
     lodash.debounce "^4.0.8"
     prettier "^1.14.3"
     resize-observer-polyfill "^1.5.0"
+
+react-sortable-hoc@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/react-sortable-hoc/-/react-sortable-hoc-1.8.3.tgz#0c80cda29f305038f985cbdb34d3030220e1ab5d"
+  integrity sha512-gGYj4Ph8rxmxOrW3gubvtlRqf0/3cpPnz/pd3s3msvgxYEtYZKhVBywFaHz12Xy9krN4H2YRWjhL9fnL9A/Smg==
+  dependencies:
+    "@babel/runtime" "^7.2.0"
+    invariant "^2.2.4"
+    prop-types "^15.5.7"
 
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.7.0:
   version "16.8.5"
