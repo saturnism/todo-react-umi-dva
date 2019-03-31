@@ -5,11 +5,11 @@
 import React, { PureComponent } from 'react';
 import { Layout, Input, List, Icon } from 'antd';
 import { connect } from 'dva';
-import { TodoState } from './model';
+import { TodosState } from './model';
 import * as styles from './index.css';
 
 interface ViewProps {
-  todos: TodoState;
+  todos: TodosState;
   dispatch: any;
   loading: boolean;
 }
@@ -33,9 +33,10 @@ class Todo extends PureComponent<ViewProps, ViewStates> {
 
     const { dispatch } = this.props;
     dispatch({
-      type: 'todos/add',
+      type: 'todos/push',
       payload: {
         description: this.state.pendingTodo,
+        completed: false,
       },
     });
     this.setState({ pendingTodo: '' });
@@ -44,7 +45,7 @@ class Todo extends PureComponent<ViewProps, ViewStates> {
   completeTodo(id: number) {
     const { dispatch } = this.props;
     dispatch({
-      type: 'todos/complete',
+      type: 'todos/update',
       id: id,
       payload: {
         completed: true,

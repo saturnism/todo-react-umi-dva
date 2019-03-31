@@ -41,7 +41,7 @@ A sequence of steps that I did to create this Todo app.
 1. Create a file to declare domain types: `touch src/pages/todo/types.ts`
    1. Create a `Todo` class. We'll come back to the Model file to wire up `dva`
 1. Create a Mock file to host the mock service: `touch src/pages/todo/_mock.ts`
-   1. Mock `/api/todos` service (see [source](src/pages/todo/_mock.ts))
+   1. Mock `/api/todos` service (see [source](src/pages/todos/_mock.ts))
    1. Try it out:
       1. Post new Todo: `curl -XPOST -H"Content-Type: application/json" -d'{"description" : "hello"}' localhost:8000/api/todos`
       1. Get Todos: `curl localhost:8000/api/todos`
@@ -49,7 +49,7 @@ A sequence of steps that I did to create this Todo app.
 
 ### Create a Todo Service
 1. Create a Service file: `touch src/pages/todo/service.ts`
-   1. Create `TodoService`, see [source](src/pages/todo/service.ts)
+   1. Create `TodoService`, see [source](src/pages/todos/service.ts)
 
 ### Create the UI
 1. Create an `index.tsx` file: `touch src/pages/todo/index.tsx`
