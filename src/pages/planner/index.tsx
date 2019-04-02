@@ -5,8 +5,7 @@
 import React, { PureComponent } from 'react';
 import { Button, Layout, Calendar, Timeline, Tag, Popover, Row } from 'antd';
 import { Moment } from 'moment';
-import { DragDropContextProvider } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
+
 import DragTag from '@/components/DragTag';
 import DropCell from '@/components/DropCell';
 import { arrayMove, SortableContainer, SortableElement, SortEvent } from 'react-sortable-hoc';
@@ -50,7 +49,6 @@ class Counter extends PureComponent<ViewProps, ViewStates> {
           <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
         </div>
 
-      <DragDropContextProvider backend={HTML5Backend}>
         <Row>
           <DragTag>One</DragTag>
           <DragTag>Two</DragTag>
@@ -58,7 +56,6 @@ class Counter extends PureComponent<ViewProps, ViewStates> {
         <Row>
           <Calendar dateCellRender={this.renderDateCell} ></Calendar>
         </Row>
-      </DragDropContextProvider>
         </>
     );
   }
