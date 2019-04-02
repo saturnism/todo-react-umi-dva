@@ -19,7 +19,7 @@ interface LoginFormState {
   loading: loading.models.login
 }))
 export class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
-  private socialLogin = (event : MouseEvent) => {
+  private socialLogin = (event : Event) => {
     this.props.dispatch({
       type: 'login/login',
       payload: {
@@ -45,13 +45,22 @@ export class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
         <Row style={{ marginBottom: 8 }}>
           <span>Login or Sign Up with Existing Social Account</span>
         </Row>
-        <Row>
+        <Row style={{ marginBottom: 8 }}>
           <Button
             style={{width: '50%'}} size={'large'}
             icon={'facebook'}
             type={'primary'}
             data-provider={'facebook'}
             onClick={this.socialLogin}>Facebook
+          </Button>
+        </Row>
+        <Row style={{ marginBottom: 8}}>
+          <Button
+            style={{width: '50%'}} size={'large'}
+            icon={'google'}
+            type={'primary'}
+            data-provider={'google'}
+            onClick={this.socialLogin}>Google
           </Button>
         </Row>
       </Modal>

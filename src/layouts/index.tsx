@@ -18,6 +18,7 @@ export interface BasicLayoutProps extends React.Props<any> {
   online?: OnlineState
   login?: LoginState
   dispatch: Dispatch<any>
+  loading: any
 }
 
 interface BasicLayoutState {
@@ -45,13 +46,14 @@ class BasicLayout extends React.Component<BasicLayoutProps, BasicLayoutState> {
     return (
       <Spin spinning={!this.props.online} tip="Waiting to connect to the internet...">
         <Layout className="layout">
-          <Header>
+          <Header >
             <div className="logo" />
             <Menu
               theme="dark"
               mode="horizontal"
               defaultSelectedKeys={[location.pathname]}
               style={{ lineHeight: '64px' }}
+              hidden={this.props.loading.models.login}
             >
               <Menu.Item key="/"><Link to="/">Home</Link></Menu.Item>
               <Menu.Item key="/todos"><Link to="/todos">Todo</Link></Menu.Item>
@@ -65,13 +67,15 @@ class BasicLayout extends React.Component<BasicLayoutProps, BasicLayoutState> {
             </div>
           </Content>
         </Layout>
-        <LoginForm visible={this.state.showLogin} onClose={() => {
+        <LoginForm
+          visible={this.state.showLogin} onClose={() => {
           this.setState({...this.state, showLogin: false})
-        }}/>
+        }}
+        />
       </Spin>
     )
   }
 
 }
 
-export default connect(({online, login}) => ({online: online.online, login}))(BasicLayout);
+export default connect(({online, login, loading}) => ({online: online.online, login, loading}))(BasicLayout);
